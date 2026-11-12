@@ -1,35 +1,31 @@
-# S-AIR サイト（GitHub Pages 配布用）
+# S-AIR Official Website
 
-このフォルダの中身をそのままリポジトリのルートに置くことを想定しています。
+SQAHIA DIGITAL Across-the-border Internet Radio のGitHub Pages向け静的サイトです。
 
-```
-/
-├── index.html        ← トップページ（「準備中です」）。検索エンジンには noindex を設定済み
-├── robots.txt         ← サイト全体のクロールを禁止
-└── preview/
-    └── index.html     ← S-AIRサイト本体（レビュー用。これも noindex 設定済み）
-```
+## 現在の実装
 
-## なぜこの構成か
+- ダークネイビー／シアン／パープルのレスポンシブUI
+- Legends / Rookies / BGM / Indaily の4チャンネル切替
+- 実ストリームURLをチャンネル別・PCM/FLAC別にブラウザへ保存
+- HTML5 Audioによる実音声再生、音量、ミュート、接続状態・エラー表示
+- `schedule.json` を外部データソースとして読み込むJST番組表
+- 現在実装・準備中・将来計画を分離した表示
 
-- ルート（`/`）に直接アクセスしても「準備中です」とだけ表示され、本サイトの内容は見えません。
-- 本サイトは `/preview/` 以下に置いてあるので、URLを知っている人だけがレビューできます。
-- `robots.txt` と各ページの `<meta name="robots" content="noindex, nofollow">` で、検索エンジンへの掲載（SEO）をまだ行わないようにしています。
+## GitHub Pages
 
-## デプロイ手順（GitHub Pages）
+`.github/workflows/pages.yml` が `main` へのpush時にPagesへデプロイします。リポジトリの Settings → Pages で Source を **GitHub Actions** にしてください。初回のみ、リポジトリ権限の都合でPages有効化が必要な場合があります。
 
-1. GitHub で新しいリポジトリを作成します（例: `s-air-site`）。Public / Private どちらでも可（Privateの場合はGitHub Pro以上が必要な場合があります）。
-2. このフォルダの中身（`index.html` / `robots.txt` / `preview/` フォルダ）をリポジトリのルートにそのままアップロードします。
-   - GitHub上の「Add file → Upload files」からドラッグ＆ドロップでもアップロード可能です。
-   - `preview` フォルダごとアップロードすれば、`preview/index.html` の構造が保たれます。
-3. リポジトリの **Settings → Pages** を開きます。
-4. **Source** を「Deploy from a branch」にし、ブランチは `main`（または `master`）、フォルダは `/ (root)` を選択して **Save**。
-5. 数分待つと、`https://<ユーザー名>.github.io/<リポジトリ名>/` でサイトが公開されます。
-   - トップページ（`/`）→「準備中です」
-   - 本サイト（`/preview/`）→ 実際のS‑AIRサイト
+## 検索エンジン非表示
 
-## 本公開（SEOに乗せる）時にやること
+公開時点ではSEOを開始しない方針です。以下を意図的に設定しています。
 
-- `index.html` を本サイトの内容に差し替える（`preview/index.html` の中身をそのままルートに移動するのが簡単です）。
-- `robots.txt` の `Disallow: /` を削除、または必要なパスだけ許可する内容に変更する。
-- 各ページの `<meta name="robots" content="noindex, nofollow">` タグを削除する。
+- `index.html`: `noindex, nofollow, noarchive, nosnippet`
+- `googlebot`: `noindex, nofollow, noarchive, nosnippet`
+- `robots.txt`: 全クローラーに対して `Disallow: /`
+- sitemap.xml は配置していません
+
+GitHub PagesはHTTPの `X-Robots-Tag` ヘッダーを自由に設定できないため、メタタグとrobots.txtによる非表示です。将来SEOを開始するときは、メタタグ、robots.txt、sitemapの方針を同時に変更してください。
+
+## 放送サーバー連携
+
+現時点ではブラウザから設定したURLを直接再生します。AzuraCast APIの秘密トークンをフロントエンドへ置かないため、AzuraCast連携、管理画面、認証付きSchedule APIはバックエンド分離後に接続してください。未設定の音声や存在しないAPIを完成済みとは表示しません。

@@ -1,0 +1,10 @@
+[
+  {"time":"00:00–03:00","program":"Night Drift","channel":"Legends"},
+  {"time":"03:00–06:00","program":"Border Mix","channel":"Rookies"},
+  {"time":"06:00–09:00","program":"Morning Signal","channel":"Indaily"},
+  {"time":"09:00–12:00","program":"Global Beats","channel":"BGM"},
+  {"time":"12:00–15:00","program":"Lossless Lounge","channel":"Legends"},
+  {"time":"15:00–18:00","program":"Cross Frequency","channel":"Rookies"},
+  {"time":"18:00–21:00","program":"Prime Transit","channel":"BGM"},
+  {"time":"21:00–24:00","program":"Afterhours Transit","channel":"Indaily"}
+]
