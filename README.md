@@ -26,6 +26,27 @@ SQAHIA DIGITAL Across-the-border Internet Radio のGitHub Pages向け静的サ�
 
 GitHub PagesはHTTPの `X-Robots-Tag` ヘッダーを自由に設定できないため、メタタグとrobots.txtによる非表示です。将来SEOを開始するときは、メタタグ、robots.txt、sitemapの方針を同時に変更してください。
 
+## 複数ページ
+
+- `/index.html` — HOME
+- `/listen.html` — LISTEN / プレイヤー案内
+- `/schedule.html` — SCHEDULE / `schedule.json` 読込
+- `/channels.html` — CHANNELS / 4チャンネル
+- `/about.html` — ABOUT / プロジェクト記録
+
+各ページに `noindex, nofollow` を設定しています。
+
+## GitHub Pagesを有効化して公開URLを確認する手順
+
+1. GitHubで [SQAHIA/S-AIR Settings](https://github.com/SQAHIA/S-AIR/settings) を開きます。
+2. 左メニューの **Pages** を開きます。
+3. **Build and deployment → Source** で **GitHub Actions** を選択します。
+4. `main` へpush済みの `Deploy S-AIR to GitHub Pages` ワークフローを開き、**Run workflow** を押すか、次のpushで自動実行します。
+5. Actionsが緑色で完了したら、Actionsのデプロイ結果、またはPages画面上部に表示される **Visit site** を開きます。
+6. 通常のURLは `https://sqahia.github.io/S-AIR/` です。ページは `https://sqahia.github.io/S-AIR/listen.html` のように確認できます。
+
+リポジトリがPrivateの場合、GitHubアカウントのプランによってPages公開が制限されます。Pages設定やActionsで `Resource not accessible by integration` が出る場合は、リポジトリをPublicにするか、Pagesを利用できるプランへ変更し、再度 **Source: GitHub Actions** を保存してください。
+
 ## 放送サーバー連携
 
 現時点ではブラウザから設定したURLを直接再生します。AzuraCast APIの秘密トークンをフロントエンドへ置かないため、AzuraCast連携、管理画面、認証付きSchedule APIはバックエンド分離後に接続してください。未設定の音声や存在しないAPIを完成済みとは表示しません。
