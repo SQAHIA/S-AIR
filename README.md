@@ -34,6 +34,20 @@ GitHub PagesはHTTPの `X-Robots-Tag` ヘッダーを自由に設定できない
 - `/channels.html` — CHANNELS / 4チャンネル
 - `/about.html` — ABOUT / プロジェクト記録
 
+英語ページは `/en/` 配下にあります。
+
+- `/en/index.html`
+- `/en/listen.html`
+- `/en/schedule.html`
+- `/en/channels.html`
+- `/en/about.html`
+
+ページ右上の `EN` / `JP` から切り替えできます。
+
+## 独立ドメインについて
+
+S-AIRはSQAHIA Digital本体とは別リポジトリ・別Pagesプロジェクトとして運用します。現時点の確認用URLは `https://sqahia.github.io/S-AIR/` です。独自ドメインを割り当てる場合は、取得済みのドメイン名を決めた後、リポジトリルートにそのドメインを記載した `CNAME` ファイルを追加し、ドメイン側にGitHub PagesのDNSレコードを設定します。ドメイン名が未確定のため、CNAMEはまだ追加していません。
+
 各ページに `noindex, nofollow` を設定しています。
 
 ## GitHub Pagesを有効化して公開URLを確認する手順
